@@ -1,0 +1,23 @@
+service: n-tier-demo
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  findUserById:
+    handler: apiGatewayController.findUserById
+    events:
+      - httpApi:
+          path: /users/:id
+          method: get
+  listUsers:
+    handler: apiGatewayController.listAllUsers
+    events:
+      - httpApi:
+          path: /users/
+          method: get
